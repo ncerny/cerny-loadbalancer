@@ -52,6 +52,9 @@ execute 'mount -a' do
 end
 
 %w(
+  bird
+  dpdk-rte-kni-dkms
+  dpdk-igb-uio-dkms
   glb-director
   glb-healthcheck
 ).each do |pkg|

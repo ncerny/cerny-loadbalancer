@@ -16,24 +16,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+raise 'ERROR: GLB Director only supports Debian operating Systems' unless node['platform'].eql?('debian')
+
 package 'apt-transport-https'
-
-packagecloud_repo 'github/unofficial-dpdk-stable' do
-  type 'deb'
-end
-
-packagecloud_repo 'github/glb-director' do
-  type 'deb'
-end
+packagecloud_repo 'github/unofficial-dpdk-stable'
+packagecloud_repo 'github/glb-director'
 
 %W(
   linux-headers-#{node['kernel']['release']}
   build-essential
-  bird
   dpdk-dev=#{node['glb']['dpdk']['version']}
   dpdk=#{node['glb']['dpdk']['version']}
-  dpdk-rte-kni-dkms
-  dpdk-igb-uio-dkms
 ).each do | pkg |
   name, version = pkg.split('=')
   package name do

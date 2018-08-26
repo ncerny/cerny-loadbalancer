@@ -1,20 +1,29 @@
 {
-  "revision_id": "57d2c7ae0ca4bdd1928ee4f39f730c0608f28e7d0ee068ba7240667c64bd3af6",
-  "name": "glb-director",
+  "revision_id": "78aefff6875a4f9861e57a1150d044ab86c68109707ab49b6e9cee340d57dea7",
+  "name": "cerny-loadbalancer",
   "run_list": [
-    "recipe[glb-director::default]"
+    "recipe[cerny-loadbalancer::default]"
   ],
   "included_policy_locks": [
 
   ],
   "cookbook_locks": {
-    "glb-director": {
-      "version": "0.3.3",
-      "identifier": "884d749dd9991255d2eb84e0076f78f08f539140",
-      "dotted_decimal_identifier": "38365760092477714.24157282008827759.132974592102720",
+    "cerny-loadbalancer": {
+      "version": "0.4.0",
+      "identifier": "c4318990515c7355584eb24762306faaf2a513c0",
+      "dotted_decimal_identifier": "55223562336820339.24022468042121776.122780006028224",
       "source": "..",
       "cache_key": null,
-      "scm_info": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": "git@github.com:ncerny/cerny-loadbalancer.git",
+        "revision": "4b4e25c04defd3fd97af20be3e86455bd5e0b7d9",
+        "working_tree_clean": false,
+        "published": true,
+        "synchronized_remote_branches": [
+          "origin/master"
+        ]
+      },
       "source_options": {
         "path": ".."
       }
@@ -51,7 +60,7 @@
   "solution_dependencies": {
     "Policyfile": [
       [
-        "glb-director",
+        "cerny-loadbalancer",
         ">= 0.0.0"
       ],
       [
@@ -64,7 +73,7 @@
       ]
     ],
     "dependencies": {
-      "glb-director (0.3.3)": [
+      "cerny-loadbalancer (0.4.0)": [
         [
           "packagecloud",
           ">= 0.0.0"

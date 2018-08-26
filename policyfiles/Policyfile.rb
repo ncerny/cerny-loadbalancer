@@ -4,13 +4,13 @@
 # https://docs.chef.io/policyfile.html
 
 # A name that describes what the system you're building with Chef does.
-name 'glb-director'
+name 'cerny-loadbalancer'
 
 # Where to find external cookbooks:
 default_source :supermarket
 
 # run_list: chef-client will run these recipes in the order specified.
-run_list 'glb-director::default'
+run_list 'cerny-loadbalancer::default'
 
 # Specify a custom source for a single cookbook:
-cookbook 'glb-director', path: '..'
+cookbook 'cerny-loadbalancer', path: '..'
