@@ -45,5 +45,10 @@ end
 
 template '/etc/network/interfaces.d/tunl0.conf' do
   source 'tunl0.conf.erb'
-  notifies :run, 'execute[ifup tunl0]', :immediately
+  notifies :run, 'execute[restart tunl0]', :immediately
+end
+
+execute 'restart tunl0' do
+  action :nothing
+  command '/bin/ip link set down dev tunl0 && /bin/ip link set up dev tunl0'
 end
