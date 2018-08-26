@@ -1,0 +1,33 @@
+<%- @fwt = node['glb']['forwarding_table'] %>
+{
+  "tables": [
+    {
+      "name": "<%= @fwt['name'] %>",
+      "hash_key": "<%= @fwt['hash_key'] %>",
+      "seed": "<%= @fwt['seed'] %>",
+      "binds": [
+        <%- @fwt['binds'].each do |bind| %>
+        <%- @fwt['ports'].each do |port| %>
+        {
+          "ip": "<%= bind.split('/').first %>",
+          "proto": "tcp",
+          "port": "<%= port %>"
+        },
+        <%- end %>
+        <%- end %>
+      ],
+      "backends": [
+        <%- @fwt['backends'].each do |backend, state| %>
+        {
+          "ip": "<%= backend %>",
+          "state": "<%= state %>",
+          "healthchecks": {
+            "http": 80,
+            "gue": 19523
+          }
+        },
+        <%- end %>
+      ]
+    }
+  ]
+}

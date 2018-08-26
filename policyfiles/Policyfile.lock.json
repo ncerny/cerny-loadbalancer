@@ -1,0 +1,85 @@
+{
+  "revision_id": "57d2c7ae0ca4bdd1928ee4f39f730c0608f28e7d0ee068ba7240667c64bd3af6",
+  "name": "glb-director",
+  "run_list": [
+    "recipe[glb-director::default]"
+  ],
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "glb-director": {
+      "version": "0.3.3",
+      "identifier": "884d749dd9991255d2eb84e0076f78f08f539140",
+      "dotted_decimal_identifier": "38365760092477714.24157282008827759.132974592102720",
+      "source": "..",
+      "cache_key": null,
+      "scm_info": null,
+      "source_options": {
+        "path": ".."
+      }
+    },
+    "kernel_module": {
+      "version": "1.1.1",
+      "identifier": "c6631fe01e15455f3addfa4feb3ff844814cf607",
+      "dotted_decimal_identifier": "55841033943913797.26804847849237311.272973110769159",
+      "cache_key": "kernel_module-1.1.1-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/kernel_module/versions/1.1.1/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/kernel_module/versions/1.1.1/download",
+        "version": "1.1.1"
+      }
+    },
+    "packagecloud": {
+      "version": "1.0.0",
+      "identifier": "d1f6f125abc3396fbb368f4104b248469cee9af1",
+      "dotted_decimal_identifier": "59099785712091961.31449565420913842.79468117793521",
+      "cache_key": "packagecloud-1.0.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/packagecloud/versions/1.0.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/packagecloud/versions/1.0.0/download",
+        "version": "1.0.0"
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "glb-director",
+        ">= 0.0.0"
+      ],
+      [
+        "kernel_module",
+        "= 1.1.1"
+      ],
+      [
+        "packagecloud",
+        "= 1.0.0"
+      ]
+    ],
+    "dependencies": {
+      "glb-director (0.3.3)": [
+        [
+          "packagecloud",
+          ">= 0.0.0"
+        ],
+        [
+          "kernel_module",
+          ">= 0.0.0"
+        ]
+      ],
+      "kernel_module (1.1.1)": [
+
+      ],
+      "packagecloud (1.0.0)": [
+
+      ]
+    }
+  }
+}

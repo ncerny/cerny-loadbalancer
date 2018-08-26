@@ -1,0 +1,7 @@
+SUBSYSTEM=="net", KERNEL=="vglb_kni0", \
+  RUN+="/bin/sleep 1", \
+  RUN+="/sbin/ip link set vglb_kni0 up", \
+  RUN+="/sbin/ip address add <%= @addr %>/<%= @pref %> dev vglb_kni0", \
+  <%- @routes.each do | route | %>
+  RUN+="/sbin/ip route add default via <%= route['via'] %>", \
+  <%- end %>
