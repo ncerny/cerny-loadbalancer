@@ -29,9 +29,14 @@ systemd_unit 'glb-redirect.service' do
 
     [Service]
     ExecStart=/bin/ip fou add port 19523 gue
-    ExecStartPost=/sbin/iptables -t raw -A INPUT -p udp -m udp --dport 19523 -j CT --notrack
-    ExecStartPost=/sbin/iptables -A INPUT -p udp -m udp --dport 19523 -j GLBREDIRECT
+    ExecStart=/bin/ip link set up dev tunl0
+    ExecStart=/bin/ip addr add #{node['glb']['forwarding_table']['binds'].first} dev tunl0
+    ExecStartPost=-/sbin/iptables -t raw -A INPUT -p udp -m udp --dport 19523 -j CT --notrack
+    ExecStartPost=-/sbin/iptables -A INPUT -p udp -m udp --dport 19523 -j GLBREDIRECT
+
     ExecStop=/bin/ip fou del port 19523 gue
+    ExecStop=/bin/ip addr del #{node['glb']['forwarding_table']['binds'].first} dev tunl0
+    ExecStop=/bin/ip link set down dev tunl0
     RemainAfterExit=true
 
     [Install]
@@ -41,14 +46,4 @@ end
 
 service 'glb-redirect' do
   action [:enable, :start]
-end
-
-template '/etc/network/interfaces.d/tunl0.conf' do
-  source 'tunl0.conf.erb'
-  notifies :run, 'execute[restart tunl0]', :immediately
-end
-
-execute 'restart tunl0' do
-  action :nothing
-  command '/bin/ip link set down dev tunl0 && /bin/ip link set up dev tunl0'
 end
