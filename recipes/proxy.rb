@@ -18,7 +18,7 @@
 
 include_recipe "#{cookbook_name}::deps"
 
-package 'glb-redirect'
+package 'glb-redirect-iptables-dkms'
 kernel_module 'fou'
 
 systemd_unit 'glb-redirect.service' do
