@@ -32,12 +32,16 @@ systemd_unit 'glb-redirect.service' do
     ExecStart=/bin/ip fou add port 19523 gue
     ExecStartPost=/bin/ip link set up dev tunl0
     ExecStartPost=/bin/ip addr add #{node['glb']['forwarding_table']['binds'].first} dev tunl0
-    ExecStartPost=-/sbin/iptables -t raw -A INPUT -p udp -m udp --dport 19523 -j CT --notrack
-    ExecStartPost=-/sbin/iptables -A INPUT -p udp -m udp --dport 19523 -j GLBREDIRECT
+    ExecStartPost=/sbin/iptables -t raw -A PREROUTING -p udp -m udp --dport 19523 -j CT --notrack
+    ExecStartPost=/sbin/iptables -t raw -A OUTPUT -p udp -m udp --dport 19523 -j CT --notrack
+    ExecStartPost=/sbin/iptables -A INPUT -p udp -m udp --dport 19523 -j GLBREDIRECT
 
     ExecStop=/bin/ip fou del port 19523 gue
     ExecStopPost=/bin/ip addr del #{node['glb']['forwarding_table']['binds'].first} dev tunl0
     ExecStopPost=/bin/ip link set down dev tunl0
+    ExecStopPost=/sbin/iptables -t raw -D PREROUTING -p udp -m udp --dport 19523 -j CT --notrack
+    ExecStopPost=/sbin/iptables -t raw -D OUTPUT -p udp -m udp --dport 19523 -j CT --notrack
+    ExecStopPost=/sbin/iptables -D INPUT -p udp -m udp --dport 19523 -j GLBREDIRECT
     RemainAfterExit=true
 
     [Install]

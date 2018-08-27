@@ -14,6 +14,6 @@
   @fwt['backends'].each do |backend, state|
     @ft[:backends] << { ip: backend, state: state, healthchecks: { http: 80, gue: 19523 } }
   end
-  @table = [@ft]
+  @table = { tables: [@ft] }
 %>
 <%= JSON.pretty_generate(@table) %>
