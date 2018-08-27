@@ -12,7 +12,7 @@
   end
   @ft[:backends] = []
   @fwt['backends'].each do |backend, state|
-    @ft[:backends] << { ip: backend, state: state, healthchecks: { http: 80, gue: 19523 } }
+    @ft[:backends] << { ip: backend, state: state, healthchecks: { http: 8080, gue: 19523 } }
   end
   @table = { tables: [@ft] }
 %>
