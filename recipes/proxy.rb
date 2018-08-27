@@ -22,6 +22,7 @@ package 'glb-redirect-iptables-dkms'
 kernel_module 'fou'
 
 systemd_unit 'glb-redirect.service' do
+  action [:create, :enable, :start]
   content <<-EOU.gsub(/^\s+/, '')
     [Unit]
     Description=Configure GUE and IPTables Rules for GLB proxy layer.
@@ -42,8 +43,4 @@ systemd_unit 'glb-redirect.service' do
     [Install]
     WantedBy=multi-user.target
   EOU
-end
-
-service 'glb-redirect' do
-  action [:enable, :start]
 end
