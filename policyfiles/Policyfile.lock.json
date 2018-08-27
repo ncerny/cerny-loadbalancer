@@ -1,5 +1,5 @@
 {
-  "revision_id": "0080d0d4530857789f7d0a3550d1db6e3cf0312a9aa300bc65bedda17fa396a5",
+  "revision_id": "4195df0a56bd844c4874f9f304cbe71f306b843be394bb91e82632cc72b1ae5a",
   "name": "cerny-loadbalancer",
   "run_list": [
     "recipe[cerny-loadbalancer::default]"
@@ -10,14 +10,14 @@
   "cookbook_locks": {
     "cerny-loadbalancer": {
       "version": "0.5.3",
-      "identifier": "2676c4f1e3dacfc6c6fe9de96cffb981d3f582d0",
-      "dotted_decimal_identifier": "10826637358914255.55950842262023423.203967258002128",
+      "identifier": "bfde016932eca8877cc103d94a1d3be46c7794bf",
+      "dotted_decimal_identifier": "54005818193013928.38136290291042845.65852258358463",
       "source": "..",
       "cache_key": null,
       "scm_info": {
         "scm": "git",
         "remote": "git@github.com:ncerny/cerny-loadbalancer.git",
-        "revision": "a8073d5dbbd8e9ba68a0a4a73b031e4a3029a241",
+        "revision": "d259d82bd07242182396705714a809e05974a4b7",
         "working_tree_clean": false,
         "published": true,
         "synchronized_remote_branches": [
